@@ -1,0 +1,17 @@
+{
+  "name": "birdie-middle-layer",
+  "version": "1.0.0",
+  "description": "Connects to the bird diet database and exposes API endpoints for getting information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Nikhil Komirisetti, Team add your names here",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}

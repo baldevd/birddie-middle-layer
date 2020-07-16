@@ -9,7 +9,7 @@ var connectionPool = mysql.createPool({
     connectionLimit: 10,
     host: "database-dept-dietdatabase.cloudapps.unc.edu",
     user: "userFVC",
-    password: "8Vy8XS6gSWRK7OQu",
+    password: ROOTPASS,
     database: "birddietdb"
 });
 

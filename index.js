@@ -1,7 +1,6 @@
 var express = require("express");
 var app = express();
 var mysql = require('mysql');
-const path = require('path');
 var cors = require('cors');
 var port = process.env.PORT || 1337;
 
@@ -13,12 +12,8 @@ var connectionPool = mysql.createPool({
     database: "birddietdb"
 });
 
-//const INDEX = path.join(__dirname, 'client/index.html');
-//app.get('/', (req, res) => res.sendFile(INDEX))
-
 app.use(cors())
 app.use(express.static('client'));
-
 
 app.listen(port, () => {
     console.log("Server running on port: " + port);

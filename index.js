@@ -8,8 +8,8 @@ var port = process.env.PORT || 1337;
 var connectionPool = mysql.createPool({
     connectionLimit: 10,
     host: "database-dept-dietdatabase.cloudapps.unc.edu",
-    user: "userFVC",
-    password: ROOTPASS,
+    user: "root",
+    password: process.env.ROOTPASS,
     database: "birddietdb"
 });
 
@@ -25,11 +25,34 @@ app.listen(port, () => {
 });
 
 // get all birds?
-app.get('/birds', (req, res, next) => {
+app.get('/prey_order', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM `feedback` ORDER BY id DESC LIMIT 100', function (error, results, fields) {
+        connection.query('SELECT unique(Prey_Order) FROM db ORDER BY ', function (error, results, fields) {
             res.json(results);
             connection.release();
+        });
+    });
+});
+
+app.get('/prey_order', (req, res, next) => {
+    connectionPool.getConnection(function (err, connection) {
+        connection.query('SELECT unique(Prey_Order) FROM db ORDER BY ', function (error, results, fields) {
+            res.json(results);
+            connection.release();
+        });
+    });
+});
+
+app.post('/bird_search', (req, res, next) => {
+    connectionPool.getConnection(function (err, connection) {
+        console.log(req.query.bird);
+        connection.query({
+            sql: 'INSERT INTO `feedback`(`feedback`) VALUES (?)',
+            timeout: 10000,
+            values: [req.query.bird]
+        }, function (error, results, fields) {
+            connection.release();
+            res.sendStatus(200)
         });
     });
 });

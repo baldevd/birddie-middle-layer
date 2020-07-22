@@ -19,6 +19,11 @@ app.listen(port, () => {
     console.log("Server running on port: " + port);
 });
 
+app.get('/testEndpoint',(req, res, next) => {
+    console.log(req.query.helloWorld);
+    res.sendStatus(200);
+});
+
 // get all birds?
 app.get('/prey_order', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {

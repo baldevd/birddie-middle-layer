@@ -54,7 +54,7 @@ app.get('/prey_order', (req, res, next) => {
 
 // SELECT * FROM birddietdb WHERE Common_Name = 'Bald eagle'
 
-app.post('/bird_search', (req, res, next) => {
+app.get('/bird_search', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
         connection.query({
@@ -63,6 +63,7 @@ app.post('/bird_search', (req, res, next) => {
             values: [req.query.bird]
         }, function (error, results, fields) {
             connection.release();
+            res.json(results);
             res.sendStatus(200)
         });
     });

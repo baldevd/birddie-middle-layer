@@ -63,8 +63,7 @@ app.get('/bird_search', (req, res, next) => {
             values: [req.query.bird]
         }, function (error, results, fields) {
             connection.release();
-            res.json(results);
-            res.sendStatus(200)
+            res.json(results)
         });
     });
 });

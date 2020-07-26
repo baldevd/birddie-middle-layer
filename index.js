@@ -58,7 +58,7 @@ app.get('/bird_search', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
         connection.query({
-            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = "?"',
+            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ?',
             timeout: 10000,
             values: [req.query.bird]
         }, function (error, results, fields) {

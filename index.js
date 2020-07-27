@@ -72,7 +72,7 @@ app.get('/advanced_bird_search', (req, res, next) => {
         connection.query({
             sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin = ?',
             timeout: 10000,
-            values: [req.query.bird]
+            values: [req.query.bird, req.query.yearBegin]
         }, function (error, results, fields) {
             connection.release();
             res.json(results)

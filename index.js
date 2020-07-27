@@ -108,6 +108,20 @@ app.get('/record_count', (req, res, next) => {
     });
 });
 
+app.get('/family_count', (req, res, next) => {
+    connectionPool.getConnection(function (err, connection) {
+        console.log(req.query.bird);
+        connection.query({
+            sql: 'SELECT COUNT(Family) FROM `birddietdb` WHERE Common_Name = ?',
+            timeout: 10000,
+            values: [req.query.bird]
+        }, function (error, results, fields) {
+            connection.release();
+            res.json(results)
+        });
+    });
+});
+
 /* Variables
 *  @Common_Name VARCHAR(255)
 *  @Prey_Taxon_Level ('Kingdom', 'Phylum', 'Class', 'Order', 'Suborder', 'Family', 'Genus', 'Species')

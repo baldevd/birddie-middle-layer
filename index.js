@@ -70,7 +70,7 @@ app.get('/advanced_bird_search', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird, req.query.yearBegin, req.query.yearEnd, req.query.location);
         connection.query({
-            sql: 'SELECT Prey_Common_Name, Fraction_Diet, Diet_Type FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin >= ? AND Observation_Year_End <= ? AND Location_Region = ? AND Season = ?',
+            sql: 'SELECT Prey_Common_Name, Fraction_Diet, Diet_Type FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin >= ? AND Observation_Year_End <= ? AND Location_Region = ?',
             timeout: 10000,
             values: [req.query,bird, req.query.yearBegin, req.query.yearEnd, req.query.location]
         }, function (error, results, fields) {

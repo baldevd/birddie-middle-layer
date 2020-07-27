@@ -52,13 +52,13 @@ app.get('/prey_order', (req, res, next) => {
     });
 });
 
-// SELECT * FROM birddietdb WHERE Common_Name = 'Bald eagle'
-
 app.get('/bird_search', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
+        console.log(req.query.yearBegin);
+        console.log(requ.query.yearEnd);
         connection.query({
-            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ?',
+            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin = ? AND Observation_Year_End = ? AND Diet_Type = ?',
             timeout: 10000,
             values: [req.query.bird]
         }, function (error, results, fields) {

@@ -55,10 +55,8 @@ app.get('/prey_order', (req, res, next) => {
 app.get('/bird_search', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
-        console.log(req.query.yearBegin);
-        console.log(requ.query.yearEnd);
         connection.query({
-            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin = ? AND Observation_Year_End = ?',
+            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ?',
             timeout: 10000,
             values: [req.query.bird]
         }, function (error, results, fields) {

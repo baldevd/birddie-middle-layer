@@ -112,7 +112,7 @@ app.get('/sources', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
         connection.query({
-            sql: 'SELECT UNIQUE(Source) FROM `birddietdb` WHERE Common_Name = ?',
+            sql: 'SELECT DISTINCT Source FROM `birddietdb` WHERE Common_Name = ?',
             timeout: 10000,
             values: [req.query.bird]
         }, function (error, results, fields) {

@@ -66,6 +66,20 @@ app.get('/bird_search', (req, res, next) => {
     });
 });
 
+app.get('/advanced_bird_search', (req, res, next) => {
+    connectionPool.getConnection(function (err, connection) {
+        console.log(req.query.bird, req.query.yearBegin);
+        connection.query({
+            sql: 'SELECT * FROM `birddietdb` WHERE Common_Name = ? AND Observation_Year_Begin = ?',
+            timeout: 10000,
+            values: [req.query.bird]
+        }, function (error, results, fields) {
+            connection.release();
+            res.json(results)
+        });
+    });
+});
+
 /* Variables
 *  @Common_Name VARCHAR(255)
 *  @Prey_Taxon_Level ('Kingdom', 'Phylum', 'Class', 'Order', 'Suborder', 'Family', 'Genus', 'Species')

@@ -150,19 +150,19 @@ app.get('/family_count', (req, res, next) => {
     });
 });
 
-app.get('/all_birds', (req, res, next) => {
-    connectionPool.getConnection(function (err, connection) {
-        console.log(req.query.bird);
-        connection.query({
-            sql: 'SELECT DISTINCT(Common_Name), Family FROM `birddietdb`',
-            timeout: 10000,
-            values: [req.query.bird]
-        }, function (error, results, fields) {
-            connection.release();
-            res.json(results)
-        });
-    });
-});
+// app.get('/all_birds', (req, res, next) => {
+//     connectionPool.getConnection(function (err, connection) {
+//         console.log(req.query.bird);
+//         connection.query({
+//             sql: 'SELECT DISTINCT(Common_Name), Family FROM `birddietdb`',
+//             timeout: 10000,
+//             values: [req.query.bird]
+//         }, function (error, results, fields) {
+//             connection.release();
+//             res.json(results)
+//         });
+//     });
+// });
 
 /* Variables
 *  @Common_Name VARCHAR(255)

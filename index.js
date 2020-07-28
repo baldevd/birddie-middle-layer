@@ -154,7 +154,7 @@ app.get('/all_birds', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
         connection.query({
-            sql: 'SELECT  DISTINCT(Common_Name), DISTINCT(Family) FROM `birddietdb`',
+            sql: 'SELECT DISTINCT(Common_Name), Family FROM `birddietdb`',
             timeout: 10000,
             values: [req.query.bird]
         }, function (error, results, fields) {

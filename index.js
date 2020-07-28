@@ -108,6 +108,20 @@ app.get('/record_count', (req, res, next) => {
     });
 });
 
+app.get('/study_count', (req, res, next) => {
+    connectionPool.getConnection(function (err, connection) {
+        console.log(req.query.bird);
+        connection.query({
+            sql: 'SELECT COUNT(DISTINCT(Source))FROM `birddietdb` WHERE Common_Name = ?',
+            timeout: 10000,
+            values: [req.query.bird]
+        }, function (error, results, fields) {
+            connection.release();
+            res.json(results)
+        });
+    });
+});
+
 app.get('/sources', (req, res, next) => {
     connectionPool.getConnection(function (err, connection) {
         console.log(req.query.bird);
